@@ -93,6 +93,7 @@
     "lint-and-test": "npm run lint && npm test",
     "update:docs": "node scripts/update-docs",
     "review:syntax-patch": "node scripts/review-syntax-patch",
+    "match-report": "node scripts/match-report.js",
     "test": "mocha lib/__tests --require lib/__tests/helpers/setup.js --reporter progress",
     "test:cjs": "mocha cjs/__tests --require lib/__tests/helpers/setup.js --reporter progress",
     "test:dist": "mocha dist/__tests --reporter progress",
