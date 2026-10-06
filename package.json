@@ -94,6 +94,8 @@
     "update:docs": "node scripts/update-docs",
     "review:syntax-patch": "node scripts/review-syntax-patch",
     "test": "mocha lib/__tests --require lib/__tests/helpers/setup.js --reporter progress",
+    "test:token-replace": "mocha lib/__tests/token-replace.js --require lib/__tests/helpers/setup.js --reporter spec",
+    "example:token-replace": "node scripts/token-replace.js",
     "test:cjs": "mocha cjs/__tests --require lib/__tests/helpers/setup.js --reporter progress",
     "test:dist": "mocha dist/__tests --reporter progress",
     "coverage": "c8 --exclude lib/__tests --reporter=lcovonly npm test",
