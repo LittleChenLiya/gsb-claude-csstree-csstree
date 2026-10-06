@@ -27,6 +27,7 @@ const external = [
     'css-tree/lexer',
     'css-tree/convertor',
     'css-tree/utils',
+    'css-tree/token-replace',
     /^source-map/
 ];
 
@@ -41,6 +42,7 @@ convertAll([{
         './lib/lexer/index.js',
         './lib/convertor/index.js',
         './lib/utils/index.js',
+        './lib/token-replace/index.js',
         ...readDir('./lib/__tests')
     ],
     outputDir: './cjs'

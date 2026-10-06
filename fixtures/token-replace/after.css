@@ -1,0 +1,6 @@
+/* theme tokens - comments stay untouched */
+button {
+    width: 20px; /* fixed hit area */
+    content: "10px";
+    border: dashed red;
+}

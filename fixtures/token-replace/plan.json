@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "source": "8a:4d6cd1519dd02e27",
+    "edits": [
+        {
+            "index": 0,
+            "start": 65,
+            "end": 69,
+            "type": "dimension-token",
+            "value": "20px",
+            "valueType": "dimension-token"
+        },
+        {
+            "index": 1,
+            "start": 125,
+            "end": 130,
+            "type": "ident-token",
+            "value": "dashed",
+            "valueType": "ident-token"
+        }
+    ]
+}
