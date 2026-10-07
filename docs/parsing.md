@@ -29,6 +29,7 @@ Options (optional):
 - [onComment](#oncomment)
 - [onToken](#ontoken)
 - [onParseError](#onparseerror)
+- [errorContextMaxLength](#errorcontextmaxlength)
 - [filename](#filename)
 - [offset](#offset)
 - [line](#line)
@@ -95,6 +96,31 @@ csstree.parse('example { foo; bar: 1! }', {
 // Parse error: Identifier is expected
 //     1 |example { foo; bar: 1! }
 // ------------------------------^
+```
+
+### errorContextMaxLength
+
+Type: `number`  
+Default: `160`
+
+A parse error (an instance of `SyntaxError` thrown on parsing or passed to `onParseError` handler) provides a bounded source context via its `sourceContext` property: the line containing the error offset (sliced by the original offset) with a caret indicating the column. The slice is capped to `errorContextMaxLength` code points (long lines are truncated around the error position with `…` markers), so the whole stylesheet is never embedded into the exception. CRLF is treated as a single line break and astral characters (e.g. emoji) count as a single position, i.e. neither shifts the caret.
+
+```js
+try {
+    csstree.parse('.a{color:red}
+中文😀 !
+b{color:blue}', {
+        onParseError(error) {
+            throw error;
+        }
+    });
+} catch (e) {
+    console.log(e.name);         // SyntaxError
+    console.log(e.offset);       // 20
+    console.log(e.sourceContext);
+    // 中文😀 !
+    //     ^
+}
 ```
 
 ### onComment
