@@ -1,3 +1,9 @@
+## next
+
+- Added a bounded source context to parse errors: the error line is located by the error offset and exposed as `error.context` (with a `pointer` to the error column) alongside the existing `error.sourceFragment()` / `error.formattedMessage` renderings; CRLF line breaks are handled and surrogate pairs (e.g. emoji) are never split when truncating
+- Added `errorContextMaxLength` option to the `parse()` method to configure the maximum length of a source line retained in a parse error's context (default `100`)
+- Changed `error.source` on parse errors to keep the full source only when it fits the context budget, otherwise a bounded excerpt around the error position is stored instead of the whole stylesheet (`error.offset`, `error.line` and `error.column` are not affected)
+
 ## 3.2.1 (March 5, 2026)
 
 - Fixed parsing of nested function in a group in definition syntax (#358)

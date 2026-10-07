@@ -29,6 +29,7 @@ Options (optional):
 - [onComment](#oncomment)
 - [onToken](#ontoken)
 - [onParseError](#onparseerror)
+- [errorContextMaxLength](#errorcontextmaxlength)
 - [filename](#filename)
 - [offset](#offset)
 - [line](#line)
@@ -95,6 +96,25 @@ csstree.parse('example { foo; bar: 1! }', {
 // Parse error: Identifier is expected
 //     1 |example { foo; bar: 1! }
 // ------------------------------^
+```
+
+### errorContextMaxLength
+
+Type: `number`  
+Default: `100`
+
+Maximum length of a source line retained in a parse error's context. When parsing fails, the error (a `SyntaxError` thrown or passed to `onParseError`) carries a bounded source context instead of the whole stylesheet: the error line is located by the error offset, truncated to `errorContextMaxLength` around the error position (line breaks such as CRLF are handled and surrogate pairs, e.g. emoji, are never split), and exposed as `error.context` (`lines` with a `pointer` to the error column) together with the `error.sourceFragment()` / `error.formattedMessage` renderings. `error.source` keeps the full source only when it fits the context budget, otherwise it contains a bounded excerpt around the error position. The error class, `offset`, `line` and `column` are not affected by this option.
+
+```js
+try {
+    csstree.parse('a { color: #; }', { errorContextMaxLength: 40 });
+} catch (e) {
+    console.log(e.context);
+    // {
+    //     lines: [{ line: 1, text: 'a { color: #; }' }],
+    //     pointer: { line: 1, column: 13 }
+    // }
+}
 ```
 
 ### onComment
