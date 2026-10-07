@@ -3,6 +3,7 @@
 - [AST format](ast.md)
 - [Parsing CSS → AST](parsing.md)
 - [Serialization AST → CSS](generate.md)
+- [Value normalization](normalize.md)
 - [AST traversal](traversal.md)
 - [Util functions](utils.md)
 - [List class](list.md)
